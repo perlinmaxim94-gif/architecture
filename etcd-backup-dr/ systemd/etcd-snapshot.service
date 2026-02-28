@@ -1,0 +1,8 @@
+## `architecture/etcd-backup-dr/systemd/etcd-snapshot.service`
+```ini
+[Unit]
+Description=etcd snapshot backup (off-cluster)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/etcd-snapshot.sh
