@@ -53,6 +53,29 @@ mount | grep ' /backup/etcd '
 
 
 
+# 2) Док: systemd timer (и почему он)
+
+## `architecture/etcd-backup-dr/systemd-timer.md`
+
+```md
+# systemd timer for etcd snapshots
+
+## Why systemd timer (instead of cron)
+- better observability: `systemctl status`, `journalctl`
+- supports missed runs with `Persistent=true`
+- easier to manage as code (unit files)
+
+## Files
+- `systemd/etcd-snapshot.service`
+- `systemd/etcd-snapshot.timer`
+
+## Install
+```bash
+sudo cp systemd/etcd-snapshot.service /etc/systemd/system/
+sudo cp systemd/etcd-snapshot.timer /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now etcd-snapshot.timer
+
 
 
 
